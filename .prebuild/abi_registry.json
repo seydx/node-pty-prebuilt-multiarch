@@ -102,5 +102,12 @@
     "lts": false,
     "future": true,
     "abi": "93"
+  },
+  {
+    "runtime": "node",
+    "target": "17.0.1",
+    "lts": false,
+    "future": true,
+    "abi": "102"
   }
 ]
