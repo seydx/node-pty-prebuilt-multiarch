@@ -12,7 +12,7 @@ const abiRegistryJsonPath = path.resolve(nodeAbiPkgPath, 'abi_registry.json');
 fs.copyFileSync(path.resolve(__dirname, 'abi_registry.json'), abiRegistryJsonPath);
 
 if (os.platform() === 'win32') {
-  return;
+  process.exit(0);
 }
 
 const cwd = path.resolve(__dirname, '../');
@@ -38,7 +38,9 @@ const nodeBuildTargets = [
   '-t',
   '16.0.0',
   '-t',
-  '17.0.1'
+  '17.0.1',
+  '-t',
+  '18.0.0',
 ]
 
 const nodeBuildCmd = [
@@ -56,7 +58,7 @@ try {
   });
 } catch (e) {
   console.error(e);
-  return;
+  process.exit(0);
 }
 
 /** 
@@ -96,5 +98,5 @@ try {
     stdio: ['inherit', 'inherit', 'inherit']
   });
 } catch (e) {
-  return;
+  process.exit(0);
 }
