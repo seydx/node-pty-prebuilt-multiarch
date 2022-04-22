@@ -45,21 +45,7 @@ const nodeBuildTargets = [
   '-t',
   '17.0.1',
   '-t',
-  '18.0.0',
-  // '-t',
-  // 'electron@5.0.0',
-  // '-t',
-  // 'electron@6.0.0',
-  // '-t',
-  // 'electron@7.0.0',
-  // '-t',
-  // 'electron@8.0.0',
-  // '-t',
-  // 'electron@9.0.0',
-  // '-t',
-  // 'electron@10.0.0',
-  // '-t',
-  // 'electron@11.0.0',
+  '18.0.0'
 ]
 
 const nodeBuildCmd = [

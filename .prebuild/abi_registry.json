@@ -90,11 +90,25 @@
     "lts": false
   },
   {
+    "abi": "87",
+    "runtime": "electron",
+    "target": "12.0.0",
+    "future": false,
+    "lts": false
+  },
+  {
     "runtime": "node",
     "target": "15.0.0",
     "lts": false,
     "future": false,
     "abi": "88"
+  },
+  {
+    "abi": "89",
+    "runtime": "electron",
+    "target": "13.0.0",
+    "future": false,
+    "lts": false
   },
   {
     "runtime": "node",
@@ -104,11 +118,46 @@
     "abi": "93"
   },
   {
+    "abi": "97",
+    "future": false,
+    "lts": false,
+    "runtime": "electron",
+    "target": "14.0.0"
+  },
+  {
+    "abi": "98",
+    "future": false,
+    "lts": false,
+    "runtime": "electron",
+    "target": "15.0.0"
+  },
+  {
+    "abi": "99",
+    "future": false,
+    "lts": false,
+    "runtime": "electron",
+    "target": "16.0.0"
+  },
+  {
+    "abi": "101",
+    "future": false,
+    "lts": false,
+    "runtime": "electron",
+    "target": "17.0.0"
+  },
+  {
     "runtime": "node",
     "target": "17.0.1",
     "lts": false,
     "future": true,
     "abi": "102"
+  },
+  {
+    "abi": "103",
+    "future": false,
+    "lts": false,
+    "runtime": "electron",
+    "target": "18.0.0"
   },
   {
     "runtime": "node",
