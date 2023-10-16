@@ -31,15 +31,15 @@ When `@homebridge/node-pty-prebuilt-multiarch` is installed as a package depende
 
 ## Build / Package
 
-Please note releasing this package uses github actions.
+Please note releasing this package uses GitHub actions.
 
-1. Make your updates, and update version within package.json
-2. Create a Pre Release on github with the TAG matching the version from Step 1
-3. Run the gituhb action `Prebuild node-gyp and package for a GitHub Release` and supply the version TAG
-4. Start a MacOS ARM64 Local runner in your environment
-5. Run the gituhb action `Prebuild node-gyp MacOS ARM64 Binaries and package for a GitHub Release` and supply the version TAG
-6. Wait for steps 3 and 5 to complete, 3 takes about an hour.  If you need to rerun a step, go into the Release, and remove the attached prebuilds.
-7. Run the gituhb action `Package GitHub release for NPM` and supply the version TAG.
+1. Make your updates, and update version within package.json (and regenerate the lock file with the new version)
+2. Create a Pre Release on GitHub with the TAG matching the version from Step 1 (with a `v` in front of it)
+3. Run the GitHub action `Prebuild node-gyp and package for a GitHub Release` and supply the version TAG
+4. Start a macOS ARM64 Local runner in your environment (see [here](https://github.com/homebridge/node-pty-prebuilt-multiarch/settings/actions/runners))
+5. Run the GitHub action `Prebuild node-gyp MacOS ARM64 Binaries and package for a GitHub Release` and supply the version TAG
+6. Wait for steps 3 and 5 to complete (step 3 takes about 20 minutes). If you need to rerun a step, go into the GitHub Release, and remove the attached pre-builds.
+7. Run the GitHub action `Package GitHub release for NPM` and supply the version TAG.
 
 ## License
 
