@@ -1,6 +1,7 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const process = require('process');
 const child_process = require('child_process');
 
 // node-abi is still shipping the wrong data
@@ -10,6 +11,12 @@ const nodeAbiPkgPath = path.dirname(require.resolve('node-abi'));
 const prebuildPath = path.resolve(prebuildPkgPath, 'bin.js');
 const abiRegistryJsonPath = path.resolve(nodeAbiPkgPath, 'abi_registry.json');
 fs.copyFileSync(path.resolve(__dirname, 'abi_registry.json'), abiRegistryJsonPath);
+
+// const nodeGypPkgPath = path.dirname(require.resolve('prebuild'));
+// const nodeGyp = path.resolve(nodeGypPkgPath, 'node_modules/node-gyp/bin/node-gyp.js');
+
+// console.log('nodeGyp', nodeGyp);
+console.log('pwd',process.cwd());
 
 const altAbiRegistryJsonPath = path.resolve(prebuildPkgPath, 'node_modules/node-abi/abi_registry.json');
 if (fs.existsSync(altAbiRegistryJsonPath)) {
@@ -33,7 +40,7 @@ const nodeBuildTargets = [
   '-t',
   '11.0.0',
   '-t',
-  ' 12.0.0',
+  '12.0.0',
   '-t',
   '13.0.0',
   '-t',
@@ -45,12 +52,14 @@ const nodeBuildTargets = [
   '-t',
   '17.0.1',
   '-t',
-  '18.0.0'
+  '18.0.0',
+  '-t',
+  '20.0.0'
 ]
 
 const nodeBuildCmd = [
   prebuildPath,
-  ...nodeBuildTargets,
+  ...nodeBuildTargets
 ]
 
 if (os.platform() === 'linux' && fs.existsSync('/etc/alpine-release')) {

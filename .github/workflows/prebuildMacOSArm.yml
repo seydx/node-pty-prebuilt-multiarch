@@ -1,4 +1,5 @@
-name: "Prebuild MacOS ARM64 Binaries"
+name: "Prebuild node-gyp MacOS ARM64 Binaries and package for a GitHub Release"
+run-name: Package MacOS ARM64 against ${{ github.event.inputs.tag }}
 
 on:
   workflow_dispatch:
@@ -8,22 +9,38 @@ on:
         required: true
 
 jobs:
-  build:
+  buildify:
     runs-on: [self-hosted, macOS, ARM64]
     steps: 
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v3
       with:
-        node-version: 18.x
+        node-version: lts/*
 
     - name: macOS - Prebuild Binaries
       if: runner.os == 'macOS'
       run: |
         npm install --ignore-scripts
-        node .prebuild/build.js
+        env JOBS=max node .prebuild/buildify.js
+
+    - name: List
+      shell: bash
+      run: |
+        find .
+
+    - name: Check prebuilds exist
+      shell: bash
+      run: |
+        fileCount=$(ls prebuilds/*/*node | wc -l)
+        echo "Prebuild count ${fileCount}"
+        if [ "$fileCount" -eq 0 ]; then exit 1; fi
+
+    - name: Package for GitHub Release
+      shell: bash
+      run: for i in `ls prebuilds/`; do tar cvzf prebuilds-$i.tar.gz prebuilds/$i; done
 
     - uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'prebuilds/*/*.tar.gz'
+        files: 'prebuilds-*tar.gz'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release-tag: ${{ github.event.inputs.tag }}
