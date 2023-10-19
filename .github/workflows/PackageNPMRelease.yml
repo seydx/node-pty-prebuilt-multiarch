@@ -23,14 +23,14 @@ jobs:
           node-version: lts/*
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Download GitHub Release
+      - name: Download Prebuilds from Github Release
         uses: robinraju/release-downloader@v1.8
         with:
           tag: ${{ github.event.inputs.tag }}
           fileName: 'prebuilds-*tar.gz'
           extract: true
 
-      - name: List
+      - name: List Files ( For debugging )
         shell: bash
         run: |
           find .
@@ -47,7 +47,7 @@ jobs:
           npm install
           npm run build
 
-      - name: Package
+      - name: Create NPM Package for Attaching to Github Release
         shell: bash
         run: |
           npm pack
