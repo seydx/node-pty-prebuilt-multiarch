@@ -1,6 +1,6 @@
 # @homebridge/node-pty-prebuilt-multiarch
 
-![Prebuild Binaries](https://github.com/homebridge/node-pty-prebuilt-multiarch/workflows/Prebuild%20Binaries/badge.svg)
+![Prebuild Binaries](https://github.com/homebridge/node-pty-prebuilt-multiarch/workflows/Build%20and%20Test/badge.svg)
 
 This project is a parallel fork of [`node-pty`](https://github.com/Microsoft/node-pty) providing prebuilt packages for certain Node.js and Electron versions.
 
@@ -8,7 +8,7 @@ Inspired by [daviwil/node-pty-prebuilt](https://github.com/daviwil/node-pty-preb
 
 ## Usage
 
-Thanks to the excellent [`prebuild`](https://github.com/prebuild/prebuild) and [`prebuild-install`](https://github.com/prebuild/prebuild) modules, using this module is extremely easy.  You merely have to change your `node-pty` dependency to `@homebridge/node-pty-prebuilt-multiarch` and then change any `require` statements in your code from `require('node-pty')` to `require('@homebridge/node-pty-prebuilt-multiarch')`.
+Thanks to the excellent [`prebuild`](https://github.com/prebuild/prebuild), [`prebuild-install`](https://github.com/prebuild/prebuild) modules, and [`prebuildify`](https://github.com/prebuild/prebuildify) using this module is extremely easy.  You merely have to change your `node-pty` dependency to `@homebridge/node-pty-prebuilt-multiarch` and then change any `require` statements in your code from `require('node-pty')` to `require('@homebridge/node-pty-prebuilt-multiarch')`.
 
 > **NOTE**: We started shipping prebuilds as of node-pty version 0.8.1, no prior versions are provided!  If you were using an earlier version of `node-pty` you will need to update your code to account for any API changes that may have occurred.
 
