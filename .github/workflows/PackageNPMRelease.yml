@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Download GitHub Release
         uses: robinraju/release-downloader@v1.8
