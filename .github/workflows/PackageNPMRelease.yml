@@ -80,10 +80,14 @@ jobs:
       - name: npm publish beta
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
         run: npm publish --access public --tag=beta
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.npm_auth_token }}
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
         run: npm publish --access public
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.npm_auth_token }}
 
 
 #  Publish_NPM_Release:
