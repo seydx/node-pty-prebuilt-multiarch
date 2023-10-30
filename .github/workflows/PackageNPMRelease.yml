@@ -52,25 +52,23 @@ jobs:
 
       - name: List Files ( For debugging )
         shell: bash
-        run: |
-          find .
+        run: find .
 
       - name: Fetch Adjust version script
         if: ${{ inputs.Beta }}
         run: wget https://raw.githubusercontent.com/homebridge/.github/latest/.github/npm-version-script.js
         working-directory: .github
 
-#      - name: Adjust version
-#        if: ${{ inputs.Beta }}
-#        run: node .github/npm-version-script.js ${{ github.ref }} beta
+      - name: Adjust version
+        if: ${{ inputs.Beta }}
+        run: node .github/npm-version-script.js ${{ github.ref }} beta
 
       - name: npm version (without git commit)
         if: ${{ inputs.Beta }}
         run: npm version pre --preid=beta --no-git-tag-version
 
       - name: NPM Pack Release 
-        run: |
-          npm pack
+        run: npm pack
 
       - uses: AButler/upload-release-assets@v2.0
         name: Upload NPM Release to ${{ github.event.inputs.tag }}
@@ -81,7 +79,7 @@ jobs:
 
       - name: npm publish beta
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
-        run: npm publish --access public --tag=${{ inputs.Beta }}
+        run: npm publish --access public --tag=beta
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
