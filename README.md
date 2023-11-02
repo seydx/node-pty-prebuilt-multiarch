@@ -35,7 +35,7 @@ Please note releasing this package uses GitHub actions.
 
 This flows takes the branch selected from the workflow start drop down, and creates a GitHub and NPM Release containing the prebuild artifacts.  The version of the Release comes from the package.json, and in the case of a BETA release automatically appends the beta release version.  During processing it leverages a branch called `release-candidate` as a holding area for prebuilds.
 
-When running the job, most times a couple of the instances of the sub step `Commit & Push Changes` within `Prebuild NPM and GitHub Release artifacts` fails.  When this occurs just re-run.  This is due to concurency issues between the steps and github.
+When running the job, most times a couple of the instances of the sub step `Commit & Push Changes` within `Prebuild NPM and GitHub Release artifacts` fails.  When this occurs just re-run.  This is due to concurency issues between the steps and github.  A typicall run has 3-4 steps fail.
 
 1. Create branch `release-candidate` if not existing ( The script deletes it before starting and will fail if it isn't present ).
 2. Start MacOS ARM 64 local runner
