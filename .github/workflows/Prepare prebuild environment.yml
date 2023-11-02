@@ -343,6 +343,7 @@ jobs:
         with:
           node-version: lts/*
           registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
 
       - name: NPM build
         run: |
@@ -402,10 +403,10 @@ jobs:
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
         run: npm publish --access public --tag=beta
         env:
-          npm_auth_token: ${{ secrets.npm_token }} 
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
         run: npm publish --access public  
         env:
-          npm_auth_token: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
