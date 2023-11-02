@@ -32,6 +32,10 @@ const nodeBuildCmd = [
   ...nodeBuildTargets,
 ]
 
+if (os.platform() === 'linux' && fs.existsSync('/etc/alpine-release')) {
+  nodeBuildCmd.push('--tag-libc')
+}
+
 console.log('Prebuildify for Node.js:');
 console.log(nodeBuildCmd.join(' '));
 
