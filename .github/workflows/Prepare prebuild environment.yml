@@ -400,7 +400,7 @@ jobs:
 
       - name: npm publish beta
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
-        run: npm publish --access public --tag=${{ inputs.Beta }}
+        run: npm publish --access public --tag=beta
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
