@@ -401,11 +401,11 @@ jobs:
       - name: npm publish beta
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
         run: npm publish --access public --tag=beta
-        secrets:
+        env:
           npm_auth_token: ${{ secrets.npm_token }} 
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
         run: npm publish --access public  
-        secrets:
-          npm_auth_token: ${{ secrets.npm_token }}       
+        env:
+          npm_auth_token: ${{ secrets.npm_token }}
