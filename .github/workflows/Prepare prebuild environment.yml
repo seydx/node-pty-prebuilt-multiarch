@@ -99,8 +99,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: x86_64
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linuxmusl-arm
             os: ubuntu-latest
@@ -108,8 +108,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: arm
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linuxmusl-arm64
             os: ubuntu-latest
@@ -117,8 +117,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: aarch64
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linux-arm
             os: ubuntu-latest
@@ -126,8 +126,8 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: arm
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
 # Builds for NodeJS 19+
 
@@ -137,7 +137,7 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: x86_64
             CMD: BuildNewCMD
-            COUNT: 3
+            COUNT: 26
             NPMCOUNT: 3
 
           - name: linux-ia32
@@ -146,7 +146,7 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: i386
             CMD: BuildNewCMD
-            COUNT: 3
+            COUNT: 26
             NPMCOUNT: 3
 
           - name: linux-arm64
@@ -155,8 +155,8 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: aarch64
             CMD: BuildNewCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 3
 
 # Builds for NodeJS 18 or lower
 
@@ -203,12 +203,12 @@ jobs:
             os: windows-2019
             arch: ia32
             COUNT: 21
-            NPMCOUNT: 0
+            NPMCOUNT: 0 
 
           - name: win32-x64
             os: windows-2019
             arch: x64
-            COUNT: 25
+            COUNT: 26
             NPMCOUNT: 0
 
     steps:
