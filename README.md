@@ -33,7 +33,11 @@ When `@homebridge/node-pty-prebuilt-multiarch` is installed as a package depende
 
 Please note releasing this package uses GitHub actions.
 
-1. Delete branch `release-candidate` if existing.
+This flows takes the branch selected from the workflow start drop down, and creates a GitHub and NPM Release containing the prebuild artifacts.  The version of the Release comes from the package.json, and in the case of a BETA release automatically appends the beta release version.  During processing it leverages a branch called `release-candidate` as a holding area for prebuilds.
+
+When running the job, most times a couple of the instances of the sub step `Commit & Push Changes` within `Prebuild NPM and GitHub Release artifacts` fails.  When this occurs just re-run.  This is due to concurency issues between the steps and github.
+
+1. Create branch `release-candidate` if not existing ( The script deletes it before starting and will fail if it isn't present ).
 2. Start MacOS ARM 64 local runner
 3. Ensure version tag within package.json reflects version you want to publish, please note beta tags are added by the action.
 4. Run Action `Run prebuild's and Create GitHub and NPM release`, and select branch you wish to publish, and if it needs to be BETA tagged and versioned.
