@@ -33,15 +33,15 @@ When `@homebridge/node-pty-prebuilt-multiarch` is installed as a package depende
 
 Please note releasing this package uses GitHub actions.
 
-1. Make your updates, and update version within package.json (and regenerate the lock file with the new version)
-2. Create a Pre Release on GitHub with the TAG matching the version from Step 1 (with a `v` in front of it)
-3. Run the GitHub action `Prebuild node-gyp and package for a GitHub Release` and supply the version TAG
-4. Start a macOS ARM64 Local runner in your environment (see [here](https://github.com/homebridge/node-pty-prebuilt-multiarch/settings/actions/runners))
-5. Run the GitHub action `Prebuild node-gyp MacOS ARM64 Binaries and package for a GitHub Release` and supply the version TAG
-6. Wait for steps 3 and 5 to complete (step 3 takes about 30 minutes). If you need to rerun a step, go into the GitHub Release, and remove the attached pre-builds.
-7. Run the GitHub action `Package GitHub release for NPM` and supply the version TAG.
+This flows takes the branch selected from the workflow start drop down, and creates a GitHub and NPM Release containing the prebuild artifacts.  The version of the Release comes from the package.json, and in the case of a BETA release automatically appends the beta release version.  During processing it leverages a branch called `release-candidate` as a holding area for prebuilds.
 
-If you experience an error when running `Prebuild node-gyp and package for a GitHub Release` and need to rerun, you may need to remove any release attachments from the failed build step.  You can do this with the action `Remove Release Assets from a GitHub Release`, and chose the approriate prebuild bundle.
+When running the job, most times a couple of the instances of the sub step `Commit & Push Changes` within `Prebuild NPM and GitHub Release artifacts` fails.  When this occurs just re-run.  This is due to concurency issues between the steps and github.  A typicall run has 3-4 steps fail.
+
+1. Create branch `release-candidate` if not existing ( The script deletes it before starting and will fail if it isn't present ).
+2. Start MacOS ARM 64 local runner
+3. Ensure version tag within package.json reflects version you want to publish, please note beta tags are added by the action.
+4. Run Action `Run prebuild's and Create GitHub and NPM release`, and select branch you wish to publish, and if it needs to be BETA tagged and versioned.
+5. This will run for about an hour, and create a github release with the prebuild artifacts attached, and a npm release with the prebuild artifacts attached.
 
 ## License
 

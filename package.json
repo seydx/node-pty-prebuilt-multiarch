@@ -4,7 +4,7 @@
   "author": {
     "name": "Microsoft Corporation"
   },
-  "version": "0.11.7",
+  "version": "0.11.8",
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./typings/node-pty.d.ts",
@@ -18,7 +18,11 @@
     "scripts/",
     "src/",
     "deps/",
-    "typings/"
+    "typings/",
+    "prebuilds/linux-x64",
+    "prebuilds/linux-ia32",
+    "prebuilds/linux-arm",
+    "prebuilds/linux-arm64"
   ],
   "homepage": "https://github.com/homebridge/node-pty-prebuilt-multiarch",
   "bugs": {
@@ -36,7 +40,7 @@
     "build": "tsc -b ./src/tsconfig.json",
     "watch": "tsc -b -w ./src/tsconfig.json",
     "lint": "eslint -c .eslintrc.js --ext .ts src/",
-    "install": "node scripts/check-prebuild.js || prebuild-install || node scripts/install.js",
+    "install": "node scripts/check-prebuild.js || prebuild-install --verbose || node scripts/install.js",
     "postinstall": "node scripts/post-install.js",
     "test": "cross-env NODE_ENV=test mocha -R spec --exit lib/*.test.js",
     "posttest": "npm run lint",
@@ -56,7 +60,9 @@
     "eslint": "^8.52.0",
     "mocha": "^10.2.0",
     "node-abi": "^3.51.0",
+    "node-gyp": "^10.0.0",
     "prebuild": "^12.1.0",
+    "prebuildify": "^5.0.1",
     "ps-list": "^7.2.0",
     "typescript": "^5.2.2"
   }

@@ -99,8 +99,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: x86_64
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linuxmusl-arm
             os: ubuntu-latest
@@ -108,8 +108,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: arm
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linuxmusl-arm64
             os: ubuntu-latest
@@ -117,8 +117,8 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: aarch64
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
           - name: linux-arm
             os: ubuntu-latest
@@ -126,8 +126,8 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: arm
             CMD: BuildAllCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 26
+            NPMCOUNT: 12
 
 # Builds for NodeJS 19+
 
@@ -155,8 +155,8 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: aarch64
             CMD: BuildNewCMD
-            COUNT: 25
-            NPMCOUNT: 11
+            COUNT: 3
+            NPMCOUNT: 3
 
 # Builds for NodeJS 18 or lower
 
@@ -196,14 +196,14 @@ jobs:
 
           - name: darwin-arm64
             os: [self-hosted, macOS, ARM64]
-            COUNT: 25
+            COUNT: 26
             NPMCOUNT: 11
 
           - name: win32-ia32
             os: windows-2019
             arch: ia32
             COUNT: 21
-            NPMCOUNT: 0
+            NPMCOUNT: 0 
 
           - name: win32-x64
             os: windows-2019
@@ -343,6 +343,7 @@ jobs:
         with:
           node-version: lts/*
           registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
 
       - name: NPM build
         run: |
@@ -400,8 +401,12 @@ jobs:
 
       - name: npm publish beta
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && inputs.Beta }}
-        run: npm publish --access public --tag=${{ inputs.Beta }}
+        run: npm publish --access public --tag=beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} 
 
       - name: npm publish production
         if: ${{ github.repository == 'homebridge/node-pty-prebuilt-multiarch' && ! inputs.Beta }}
-        run: npm publish --access public         
+        run: npm publish --access public  
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
