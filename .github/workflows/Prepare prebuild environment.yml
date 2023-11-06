@@ -391,7 +391,7 @@ jobs:
         with:
           files: 'prebuilds/*/node-pty*tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ steps.package-version.outputs.current-version}}
+          release-tag: v${{ steps.package-version.outputs.current-version}}
 
       - name: NPM Pack Release 
         run: |
@@ -402,7 +402,7 @@ jobs:
         with:
           files: '*node-pty-prebuilt-multiarch*.tgz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ steps.package-version.outputs.current-version}}
+          release-tag: v${{ steps.package-version.outputs.current-version}}
 
       - name: "Check file existence"
         id: check_files
