@@ -377,8 +377,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs.current-version}}
-          release_name: Release ${{ steps.package-version.outputs.current-version}}
+          tag_name: v${{ steps.package-version.outputs.current-version}}
+          release_name: Release v${{ steps.package-version.outputs.current-version}}
           body: |
             Changes in this Release
             - First Change
