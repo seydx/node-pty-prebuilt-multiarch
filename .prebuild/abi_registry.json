@@ -122,7 +122,7 @@
     "future": false,
     "lts": false,
     "runtime": "electron",
-    "target": "14.0.0"
+    "target": "14.0.2"
   },
   {
     "abi": "98",
