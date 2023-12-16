@@ -18,8 +18,9 @@ env:
   nodeBuildTargets: -t 19.0.0 -t 20.0.0 -t 21.0.0
   oldElectronBuildTargets: -t 5.0.0 -t 6.0.0 -t 7.0.0 -t 8.0.0 -t 9.0.0 -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -t 14.0.2 -t 15.0.0 -t 16.0.0 -t 17.0.0 -t 18.0.0 -t 19.0.0
   electronBuildTargets: -t 20.0.0 -t 21.0.0 -t 22.0.0 -t 23.0.0 -t 24.0.0 -t 25.0.0 -t 26.0.0 -t 27.0.0 -t 28.0.0
-  winIA32: -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -t 14.0.0 -t 15.0.0 -t 16.0.0 -t 17.0.1
-  ReleasePrebuildCount: 370
+  winIA32nodeBuildTargets: -t 10.0.0 -t 11.0.0 -t 12.0.0 -t 13.0.0 -t 14.0.0 -t 15.0.0 -t 16.0.0 -t 17.0.1
+  winIA32electronBuildTargets: -t 20.0.0 -t 21.0.0 -t 22.0.0 -t 23.0.0 -t 24.0.0 -t 25.0.0 -t 26.0.0 -t 27.0.0
+  ReleasePrebuildCount: 380
   ReleasePrebuildifyCount: 84
 
 jobs:
@@ -101,7 +102,7 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: x86_64
             CMD: BuildAllCMD
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 12
 
           - name: linuxmusl-arm
@@ -110,7 +111,7 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: arm
             CMD: BuildAllCMD
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 12
 
           - name: linuxmusl-arm64
@@ -119,7 +120,7 @@ jobs:
             DOCKERFILE: Dockerfile.alpine
             QEMU_ARCH: aarch64
             CMD: BuildAllCMD
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 12
 
           - name: linux-arm
@@ -139,7 +140,7 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: x86_64
             CMD: BuildNewCMD
-            COUNT: 10
+            COUNT: 11
             NPMCOUNT: 3
 
           - name: linux-ia32
@@ -148,7 +149,7 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: i386
             CMD: BuildNewCMD
-            COUNT: 10
+            COUNT: 11
             NPMCOUNT: 3
 
           - name: linux-arm64
@@ -157,7 +158,7 @@ jobs:
             DOCKERFILE: Dockerfile.debian
             QEMU_ARCH: aarch64
             CMD: BuildNewCMD
-            COUNT: 10
+            COUNT: 11
             NPMCOUNT: 3
 
           # Builds for NodeJS 18 or lower
@@ -193,12 +194,12 @@ jobs:
 
           - name: darwin-x64
             os: macOS-latest
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 11
 
           - name: darwin-arm64
             os: [self-hosted, macOS, ARM64]
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 11
 
           - name: win32-ia32
@@ -210,7 +211,7 @@ jobs:
           - name: win32-x64
             os: windows-2019
             arch: x64
-            COUNT: 34
+            COUNT: 35
             NPMCOUNT: 0
 
     steps:
@@ -287,8 +288,8 @@ jobs:
         shell: bash
         run: |
           npm ci --ignore-scripts
-          env JOBS=max node_modules/.bin/prebuild ${winIA32}  --include-regex "\.(node|exe|dll|pdb)" --arch ${{ matrix.arch }}
-          env JOBS=max node_modules/.bin/prebuild ${oldElectronBuildTargets} ${electronBuildTargets} --include-regex "\.(node|exe|dll|pdb)" -r electron -a ${{ matrix.arch }}
+          env JOBS=max node_modules/.bin/prebuild ${winIA32nodeBuildTargets}  --include-regex "\.(node|exe|dll|pdb)" --arch ${{ matrix.arch }}
+          env JOBS=max node_modules/.bin/prebuild ${oldElectronBuildTargets} ${winIA32electronBuildTargets} --include-regex "\.(node|exe|dll|pdb)" -r electron -a ${{ matrix.arch }}
 
       - name: Windows x64 - Prebuild Binaries
         if: ${{ (runner.os == 'Windows') && (matrix.arch == 'x64') }}
