@@ -163,7 +163,6 @@ jobs:
         shell: bash
         run: |
           npm ci --ignore-scripts
-#          env JOBS=max node_modules/.bin/prebuild ${winIA32nodeBuildTargets}  --include-regex "\.(node|exe|dll|pdb)" --arch ${{ matrix.arch }}
           env JOBS=max node_modules/.bin/prebuild ${winIA32electronBuildTargets} --include-regex "\.(node|exe|dll|pdb)" -r electron -a ${{ matrix.arch }}
 
       - name: Windows x64 - Prebuild Binaries
