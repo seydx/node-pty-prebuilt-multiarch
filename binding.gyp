@@ -77,6 +77,9 @@
           'libraries': [
             'shlwapi.lib'
           ],
+          'defines': [
+            'NOMINMAX'
+          ],
         }
       ]
     }, { # OS!="win"
