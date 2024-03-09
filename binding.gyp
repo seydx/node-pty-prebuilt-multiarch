@@ -54,6 +54,9 @@
           'sources' : [
             'src/win/conpty_console_list.cc'
           ],
+          'defines': [
+            'NOMINMAX'
+          ],
         },
         {
           'target_name': 'pty',
