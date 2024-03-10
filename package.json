@@ -48,7 +48,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "nan": "^2.19.0",
+    "nan": "github:ajgassner/nan#electron-29-workaround",
     "prebuild-install": "^7.1.2"
   },
   "devDependencies": {
@@ -65,5 +65,8 @@
     "prebuildify": "^5.0.1",
     "ps-list": "=7.2.0",
     "typescript": "^5.4.2"
+  },
+  "overrides": {
+    "nan": "github:ajgassner/nan#electron-29-workaround"
   }
 }
